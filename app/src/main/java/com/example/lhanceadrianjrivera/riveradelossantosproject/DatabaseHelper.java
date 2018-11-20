@@ -2,6 +2,7 @@ package com.example.lhanceadrianjrivera.riveradelossantosproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -16,8 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
     private static final String COLUMN_UNAME = "uname";
     private static final String COLUMN_PASS = "pass";
 
-    private static final String TABLE_CREATE = "create table contacts (id integer primary key not null auto_increment , " +
-            "email text not null , uname txt not null , pass text not null)";
+    private static final String TABLE_CREATE = "create table contacts (id integer primary key autoincrement , email text not null , uname text not null , pass text not null);";
     SQLiteDatabase db;
 
     public DatabaseHelper (Context context)
@@ -43,6 +43,31 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
         db.insert(TABLE_NAME, null ,  values);
 
+
+    }
+
+    public String searchPass (String uname)
+    {
+        db = this.getReadableDatabase();
+        String query = "select uname , pass from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "not found ";
+        if(cursor.moveToFirst())
+        {
+            do
+                {
+                    a = cursor.getString(0);
+                    if(a.equals(uname))
+                    {
+                        b = cursor.getString(1);
+                        break;
+                    }
+                }
+                while(cursor.moveToNext());
+        }
+
+        return b;
 
     }
 

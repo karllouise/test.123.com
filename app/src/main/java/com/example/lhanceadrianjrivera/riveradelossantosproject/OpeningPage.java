@@ -14,13 +14,15 @@ public class OpeningPage extends AppCompatActivity {
         setContentView(R.layout.opening_page);
     }
 
-    public void onButtonClick(View v)
+    public void onButtonClickSignin(View v)
     {
-        if(v.getId() == R.id.BLogin){
             Intent i = new Intent(this , SignUpPage.class);
             startActivity(i);
 
-        }
+    }
+    public void onButtonClickLogin(View v)
+    {
+        Intent i = new Intent(this, LoginPage.class);
     }
 
 }

@@ -30,9 +30,9 @@ public class SignUpPage extends AppCompatActivity {
           String unamestr = uname.getText().toString();
           String pass1str = pass1.getText().toString();
           String pass2str = pass2.getText().toString();
-            if(!pass1str.equals(pass2str))
+            if(!pass1str.equals(pass2str))    // password and confirm password
             {
-                Toast pass = Toast.makeText(this, "Password do not match ", Toast.LENGTH_SHORT);
+                Toast pass = Toast.makeText(this, "Password do not match ", Toast.LENGTH_SHORT); //
                 pass.show();
 
             }
